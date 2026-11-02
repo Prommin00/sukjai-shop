@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ร้านสุขใจ – ร้านค้าออนไลน์</title>
+<style>
+:root{--bg:#faf8f5;--card:#fff;--tx:#2a2420;--mut:#7a6f66;--bd:#e7e0d8;--pri:#c2410c;--pt:#fff;--ok:#15803d;--red:#dc2626}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#181412;--card:#231e1b;--tx:#f1ebe5;--mut:#a89d93;--bd:#383029;--pri:#fb923c;--pt:#2a1405;--ok:#4ade80;--red:#f87171}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 "Noto Sans Thai","Sarabun",system-ui,sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px;padding:10px 14px;flex-wrap:wrap}
+header h1{font-size:1.15rem;margin:0;flex:1}
+.w{max-width:1000px;margin:0 auto;padding:14px}
+.hero{border-radius:16px;padding:20px;margin-bottom:14px;color:#fff;background:linear-gradient(120deg,#c2410c,#f59e0b)}
+.hero h2{margin:0}.hero p{margin:0;opacity:.92}
+input,select,textarea{padding:9px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx);font:inherit;width:100%}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}.bar select{width:auto}.bar input[type=search]{flex:1;min-width:150px;width:auto}
+.chip{padding:7px 14px;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:99px;font:inherit;cursor:pointer}
+.chip.on{background:var(--pri);color:var(--pt);border-color:var(--pri)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.p{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:3px;position:relative}
+.p .e{font-size:3rem;text-align:center;background:var(--bg);border-radius:10px;padding:10px}
+.mut,.p small{color:var(--mut)}.old{text-decoration:line-through;color:var(--mut);font-size:.85rem}.pr{color:var(--pri);font-weight:700}
+.bg{position:absolute;top:8px;left:8px;background:var(--red);color:#fff;border-radius:6px;font-size:.75rem;padding:1px 7px}
+.b{padding:9px 14px;border:0;border-radius:8px;background:var(--pri);color:var(--pt);font:inherit;font-weight:600;cursor:pointer}
+.b:disabled{opacity:.5}
+.s{padding:4px 10px;border:1px solid var(--bd);border-radius:7px;background:none;color:var(--tx);cursor:pointer;font:inherit}
+.cb{position:relative}.cb span{position:absolute;top:-7px;right:-7px;background:var(--ok);color:#fff;border-radius:99px;font-size:.7rem;padding:1px 6px}
+#ov{position:fixed;inset:0;background:#0007;z-index:9;display:none}
+#dr{position:fixed;top:0;right:0;bottom:0;width:min(520px,100%);background:var(--bg);z-index:10;display:none;flex-direction:column;padding:16px;overflow-y:auto}
+.open #ov{display:block}.open #dr{display:flex}
+.li{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)}.li .e{font-size:1.8rem}.li>div{flex:1}
+.t{display:flex;justify-content:space-between;padding:3px 0}.t.big{font-weight:700;font-size:1.1rem}
+label{font-size:.85rem;color:var(--mut);display:block;margin-top:8px}
+.err{color:var(--red);font-size:.9rem;min-height:1.2em}.ok{color:var(--ok)}
+.row{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:10px;margin:8px 0}
+.tl{display:flex;justify-content:space-between;margin:10px 0;font-size:.75rem;text-align:center}.tl div{flex:1;opacity:.4}.tl .on{opacity:1;color:var(--ok);font-weight:700}
+#qr{display:flex;justify-content:center;background:#fff;padding:12px;border-radius:10px;margin:8px 0}
+footer{text-align:center;color:var(--mut);font-size:.85rem;padding:24px 14px;border-top:1px solid var(--bd);margin-top:20px}
+</style>
+</head>
+<body>
+<header><h1>🛍️ ร้านสุขใจ</h1>
+<button class="s" data-a="open" data-v="auth" id="hu">เข้าสู่ระบบ</button>
+<button class="s" data-a="open" data-v="orders" id="ho" hidden>📦 ออเดอร์ของฉัน</button>
+<button class="s" data-a="open" data-v="adm" id="ha" hidden>⚙️ จัดการร้าน</button>
+<button class="s cb" data-a="open" data-v="cart">🛒<span id="cn">0</span></button></header>
+<div class="w">
+<div class="hero"><h2>ส่งฟรีเมื่อซื้อครบ 500 บาท</h2><p>ใช้โค้ด WELCOME10 ลด 10% · SAVE50 ลด 50 บาท</p></div>
+<div class="bar"><input type="search" id="q" placeholder="ค้นหาสินค้า…"><select id="so"><option value="">เรียงตามปกติ</option><option value="a">ราคาต่ำ → สูง</option><option value="d">ราคาสูง → ต่ำ</option><option value="b">ขายดี</option></select></div>
+<div class="bar" id="cats"></div>
+<div class="grid" id="gr"><p>กำลังโหลดสินค้า…</p></div>
+</div>
+<footer>© ร้านสุขใจ · ติดต่อ: ตามข้อมูลร้านของคุณ</footer>
+<div id="ov" data-a="close"></div>
+<aside id="dr"><div style="display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0" id="dt"></h2><button class="s" data-a="close">✕</button></div><div id="dv"></div></aside>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+/* ===== ตั้งค่า ===== */
+const SUPABASE_URL='https://jcciwgvkredzazhqasey.supabase.co';
+const SUPABASE_KEY='sb_publishable_UKvSYesX09OkfmC5fT8ijA_yvDfB3Uc';
+const PROMPTPAY='0812345678'; // เปลี่ยนเป็นเบอร์พร้อมเพย์ (10 หลัก) หรือเลขบัตรประชาชน 13 หลัก
+/* ================== */
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const $=id=>document.getElementById(id);
+const f=n=>(+n).toLocaleString('th-TH',{maximumFractionDigits:2});
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const load=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}};
+const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const COUPONS={WELCOME10:{t:'pct',v:10},SAVE50:{t:'amt',v:50}};
+const STS=['รอชำระเงิน','เตรียมสินค้า','จัดส่งแล้ว','สำเร็จ'];
+let P=[],cart=load('cart',{}),coupon='',ship='std',cat='ทั้งหมด',V='cart',user=null,isAdm=false,AT='p',eid=0,AM='in',lastO=null,pend=null;
+const price=p=>+(p.sale_price||p.price);
+const prod=id=>P.find(x=>x.id==id);
+const priceH=p=>p.sale_price?`<span class="pr">฿${f(p.sale_price)}</span> <span class="old">฿${f(p.price)}</span>`:`<span class="pr">฿${f(p.price)}</span>`;
+
+/* PromptPay QR (EMVCo) */
+function crc16(s){let c=0xFFFF;for(let i=0;i<s.length;i++){c^=s.charCodeAt(i)<<8;for(let j=0;j<8;j++)c=(c&0x8000)?((c<<1)^0x1021):(c<<1);c&=0xFFFF}return c.toString(16).toUpperCase().padStart(4,'0')}
+function ppPayload(id,amt){const tag=(t,v)=>t+String(v.length).padStart(2,'0')+v;
+ const acc=id.length>=13?tag('02',id):tag('01','0066'+id.replace(/^0/,''));
+ let s=tag('00','01')+tag('01','12')+tag('29',tag('00','A000000677010111')+acc)+tag('53','764')+tag('54',(+amt).toFixed(2))+tag('58','TH')+'6304';return s+crc16(s)}
+function drawQR(amt){const el=$('qr');if(!el||typeof QRCode==='undefined')return;el.innerHTML='';new QRCode(el,{text:ppPayload(PROMPTPAY,amt),width:210,height:210})}
+
+/* Data */
+async function loadP(){
+  const {data,error}=await sb.from('products').select('*').order('id');
+  if(error){$('gr').innerHTML=`<p class="err">โหลดสินค้าไม่ได้: ${esc(error.message)}<br>ตรวจว่ารัน setup.sql แล้ว</p>`;return}
+  P=data;Object.keys(cart).forEach(id=>{if(!prod(id))delete cart[id]});cats();grid();badge();
+}
+async function setUser(u){
+  user=u||null;isAdm=false;
+  if(user){const {data}=await sb.from('profiles').select('is_admin').eq('id',user.id).maybeSingle();isAdm=!!(data&&data.is_admin)}
+  $('hu').textContent=user?'ออกจากระบบ':'เข้าสู่ระบบ';$('hu').dataset.a=user?'logout':'open';
+  $('ho').hidden=!user;$('ha').hidden=!isAdm;
+}
+sb.auth.onAuthStateChange((ev,s)=>{setTimeout(()=>setUser(s&&s.user),0)});
+sb.auth.getSession().then(({data})=>setUser(data.session&&data.session.user));
+
+/* Catalog */
+function cats(){$('cats').innerHTML=['ทั้งหมด',...new Set(P.map(x=>x.category))].map(c=>`<button class="chip ${c===cat?'on':''}" data-a="cat" data-v="${esc(c)}">${esc(c)}</button>`).join('')}
+function grid(){
+  const q=$('q').value.trim().toLowerCase(),so=$('so').value;
+  let l=P.filter(x=>(cat==='ทั้งหมด'||x.category===cat)&&(x.name+(x.description||'')).toLowerCase().includes(q));
+  if(so==='a')l.sort((a,b)=>price(a)-price(b));if(so==='d')l.sort((a,b)=>price(b)-price(a));if(so==='b')l.sort((a,b)=>b.sold-a.sold);
+  $('gr').innerHTML=l.map(x=>`<div class="p">${x.sale_price?`<span class="bg">-${Math.round((1-x.sale_price/x.price)*100)}%</span>`:''}<div class="e">${esc(x.emoji)}</div><b>${esc(x.name)}</b><small>${esc(x.description)}<br>ขายแล้ว ${f(x.sold)} · เหลือ ${x.stock}</small><div>${priceH(x)}</div>${x.stock>0?`<button class="b" data-a="add" data-i="${x.id}">เพิ่มลงตะกร้า</button>`:'<button class="s" disabled>สินค้าหมด</button>'}</div>`).join('')||'<p>ไม่พบสินค้า</p>';
+}
+$('q').oninput=$('so').onchange=grid;
+
+/* Cart */
+function add(id,d){const p=prod(id),q=(cart[id]||0)+d;if(q<=0)delete cart[id];else cart[id]=Math.min(q,p.stock);save('cart',cart);badge()}
+function badge(){$('cn').textContent=Object.values(cart).reduce((a,b)=>a+b,0)}
+function calc(){
+  const sub=Object.entries(cart).reduce((a,[id,q])=>a+price(prod(id))*q,0),c=COUPONS[coupon];
+  const disc=c?(c.t==='pct'?Math.round(sub*c.v)/100:Math.min(c.v,sub)):0;
+  const sh=sub===0?0:ship==='exp'?80:(sub-disc>=500?0:40);return{sub,disc,sh,tot:sub-disc+sh};
+}
+const sumH=t=>`<div class="t"><span>รวม</span><span>฿${f(t.sub)}</span></div>${t.disc?`<div class="t ok"><span>ส่วนลด (${esc(coupon)})</span><span>−฿${f(t.disc)}</span></div>`:''}<div class="t"><span>ค่าส่ง</span><span>${t.sh?'฿'+t.sh:'ฟรี'}</span></div><div class="t big"><span>ยอดสุทธิ</span><span>฿${f(t.tot)}</span></div>`;
+const tlH=s=>`<div class="tl">${STS.map((x,i)=>`<div class="${i<=s?'on':''}">${i<=s?'●':'○'}<br>${x}</div>`).join('')}</div>`;
+
+/* Views */
+async function R(){
+ const d=$('dv'),T=$('dt');
+ if(V==='auth'){T.textContent=AM==='in'?'เข้าสู่ระบบ':'สมัครสมาชิก';
+  d.innerHTML=`${pend?'<p class="err">กรุณาเข้าสู่ระบบก่อนชำระเงิน</p>':''}${AM==='up'?'<label>ชื่อ<input id="an"></label>':''}<label>อีเมล<input id="ae" type="email"></label><label>รหัสผ่าน (อย่างน้อย 6 ตัว)<input id="apw" type="password"></label><div class="err" id="er"></div>
+  <div class="row"><button class="b" data-a="${AM==='in'?'login':'signup'}">${AM==='in'?'เข้าสู่ระบบ':'สมัครสมาชิก'}</button><button class="s" data-a="am">${AM==='in'?'ยังไม่มีบัญชี? สมัคร':'มีบัญชีแล้ว? เข้าสู่ระบบ'}</button></div>`}
+ else if(V==='cart'){T.textContent='ตะกร้าสินค้า';const ids=Object.keys(cart);if(!ids.length){d.innerHTML='<p>ตะกร้าว่างเปล่า</p>';return}
+  d.innerHTML=ids.map(id=>{const p=prod(id);return `<div class="li"><span class="e">${esc(p.emoji)}</span><div><b>${esc(p.name)}</b><br><small>฿${f(price(p))}</small></div><button class="s" data-a="m" data-i="${id}">−</button><b>${cart[id]}</b><button class="s" data-a="pl" data-i="${id}">+</button></div>`}).join('')+
+  `<div class="row"><input id="cp" placeholder="โค้ดส่วนลด" value="${esc(coupon)}" style="flex:1;width:auto"><button class="s" data-a="cpn">ใช้โค้ด</button></div><div class="err" id="er"></div>
+  <label>วิธีจัดส่ง<select id="sh"><option value="std" ${ship==='std'?'selected':''}>ส่งธรรมดา 2–3 วัน (฿40 / ฟรีเมื่อครบ 500)</option><option value="exp" ${ship==='exp'?'selected':''}>ส่งด่วน 1 วัน (฿80)</option></select></label>
+  <div style="margin:10px 0">${sumH(calc())}</div><button class="b" style="width:100%" data-a="go">ไปชำระเงิน</button>`}
+ else if(V==='pay'){T.textContent='ที่อยู่และการชำระเงิน';
+  d.innerHTML=`<label>ชื่อ-นามสกุล<input id="fn"></label><label>เบอร์โทร<input id="ph" inputmode="tel"></label><label>ที่อยู่จัดส่ง<textarea id="ad" rows="3"></textarea></label>
+  <label>วิธีชำระเงิน<select id="py"><option>พร้อมเพย์ (สแกน QR)</option><option>เก็บเงินปลายทาง</option></select></label><div class="err" id="er"></div>
+  <div style="margin:10px 0">${sumH(calc())}</div><div class="row"><button class="s" data-a="bk">← กลับ</button><button class="b" style="flex:1" id="okb" data-a="ok">ยืนยันคำสั่งซื้อ</button></div>`}
+ else if(V==='done'){T.textContent='สั่งซื้อสำเร็จ';const o=lastO,pp=o.payment.startsWith('พร้อมเพย์')&&o.status===0;
+  d.innerHTML=`<p class="ok" style="font-size:1.2rem">✅ ขอบคุณ ${esc(o.name)}</p><p>เลขที่คำสั่งซื้อ <b>${esc(o.order_no)}</b><br>ยอดชำระ <b>฿${f(o.total)}</b> (${esc(o.payment)})</p>${pp?`<div id="qr"></div><p class="mut">สแกนจ่ายด้วยแอปธนาคาร แล้วส่งสลิปให้ร้านพร้อมเลขที่คำสั่งซื้อ แอดมินจะเปลี่ยนสถานะเป็น “เตรียมสินค้า”</p>`:''}<div class="row"><button class="b" data-a="close">เลือกซื้อต่อ</button><button class="s" data-a="open" data-v="orders">ดูออเดอร์ของฉัน</button></div>`;if(pp)drawQR(o.total)}
+ else if(V==='orders'){T.textContent='ออเดอร์ของฉัน';d.innerHTML='กำลังโหลด…';
+  const {data,error}=await sb.from('orders').select('*,order_items(*)').order('id',{ascending:false});
+  if(error){d.innerHTML=`<p class="err">${esc(error.message)}</p>`;return}
+  window._os=data;d.innerHTML=data.map((o,i)=>`<div class="box"><b>${o.order_no}</b> · ฿${f(o.total)} · ${esc(o.payment)}<br><small class="mut">${new Date(o.created_at).toLocaleString('th-TH')}<br>${o.order_items.map(x=>esc(x.name)+'×'+x.qty).join(', ')}</small>${tlH(o.status)}${o.status===0&&o.payment.startsWith('พร้อมเพย์')?`<button class="s" data-a="qr" data-i="${i}">แสดง QR ชำระเงิน</button>`:''}</div>`).join('')||'<p>ยังไม่มีออเดอร์</p>'}
+ else if(V==='adm'){T.textContent='จัดการร้าน';
+  const tabs=`<div class="row">${[['p','สินค้า'],['o','ออเดอร์'],['s','ยอดขาย']].map(t=>`<button class="chip ${AT===t[0]?'on':''}" data-a="tab" data-v="${t[0]}">${t[1]}</button>`).join('')}</div>`;
+  if(AT==='p'){const e=prod(eid)||{name:'',category:'',price:'',sale_price:'',stock:'',emoji:'📦',description:''};
+   d.innerHTML=tabs+`<div class="box"><b>${eid?'แก้ไขสินค้า':'เพิ่มสินค้าใหม่'}</b><label>ชื่อ<input id="an" value="${esc(e.name)}"></label><label>หมวดหมู่<input id="ac" value="${esc(e.category)}"></label><div class="row"><label style="flex:1">ราคา<input id="ap" type="number" value="${e.price}"></label><label style="flex:1">ราคาลด (0=ไม่ลด)<input id="as" type="number" value="${e.sale_price||0}"></label><label style="flex:1">สต็อก<input id="at" type="number" value="${e.stock}"></label></div><label>อีโมจิ<input id="ae" value="${esc(e.emoji)}"></label><label>รายละเอียด<input id="ad" value="${esc(e.description)}"></label><div class="err" id="er"></div><div class="row"><button class="b" data-a="sp">บันทึก</button>${eid?'<button class="s" data-a="ep" data-i="0">ยกเลิก</button>':''}</div></div>`+
+   P.map(p=>`<div class="li"><span class="e">${esc(p.emoji)}</span><div><b>${esc(p.name)}</b><br><small>฿${f(price(p))} · สต็อก ${p.stock}</small></div><button class="s" data-a="ep" data-i="${p.id}">แก้ไข</button><button class="s" data-a="dp" data-i="${p.id}">ลบ</button></div>`).join('')}
+  else{d.innerHTML=tabs+'กำลังโหลด…';const {data,error}=await sb.from('orders').select('*,order_items(*)').order('id',{ascending:false});
+   if(error){d.innerHTML=tabs+`<p class="err">${esc(error.message)}</p>`;return}
+   if(AT==='o')d.innerHTML=tabs+(data.map(o=>`<div class="box"><b>${o.order_no}</b> · ${esc(o.name)} · ${esc(o.phone)}<br>฿${f(o.total)} · ${esc(o.payment)}<br><small class="mut">${esc(o.address)}<br>${o.order_items.map(x=>esc(x.name)+'×'+x.qty).join(', ')}</small><br>สถานะ: <b>${STS[o.status]}</b> ${o.status<3?`<button class="s" data-a="st" data-i="${o.id}" data-v="${o.status+1}">→ ${STS[o.status+1]}</button>`:''}</div>`).join('')||'<p>ยังไม่มีออเดอร์</p>');
+   else{const tot=data.reduce((a,o)=>a+(+o.total),0);d.innerHTML=tabs+`<div class="box"><div class="t"><span>จำนวนออเดอร์</span><b>${data.length}</b></div><div class="t"><span>ยอดขายรวม</span><b>฿${f(tot)}</b></div><div class="t"><span>เฉลี่ย/ออเดอร์</span><b>฿${f(data.length?tot/data.length:0)}</b></div><div class="t"><span>รอชำระเงิน</span><b>${data.filter(o=>o.status===0).length}</b></div><div class="t"><span>สินค้าใกล้หมด (≤5)</span><b>${P.filter(p=>p.stock<=5).length}</b></div></div>`}}}
+}
+const open=v=>{V=v;document.body.classList.add('open');R()};
+const er=t=>{const e=$('er');if(e)e.textContent=t;else alert(t)};
+
+/* Actions */
+document.onclick=async e=>{
+ const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,i=+b.dataset.i,v=b.dataset.v;
+ if(a==='close')document.body.classList.remove('open');
+ else if(a==='open')open(v);
+ else if(a==='cat'){cat=v;cats();grid()}
+ else if(a==='add'){add(i,1);b.textContent='เพิ่มแล้ว ✓'}
+ else if(a==='pl'){add(i,1);R()}else if(a==='m'){add(i,-1);R()}
+ else if(a==='cpn'){const c=$('cp').value.trim().toUpperCase();if(c&&!COUPONS[c]){er('โค้ดไม่ถูกต้อง');return}coupon=c;R()}
+ else if(a==='go'){ship=$('sh').value;if(!user){pend=true;AM='in';open('auth');return}V='pay';R()}
+ else if(a==='bk'){V='cart';R()}
+ else if(a==='am'){AM=AM==='in'?'up':'in';R()}
+ else if(a==='logout'){await sb.auth.signOut();document.body.classList.remove('open')}
+ else if(a==='login'||a==='signup'){
+  const em=$('ae').value.trim(),pw=$('apw').value;if(!em||pw.length<6){er('กรอกอีเมลและรหัสผ่าน (อย่างน้อย 6 ตัว)');return}
+  b.disabled=true;
+  const r=a==='login'?await sb.auth.signInWithPassword({email:em,password:pw}):await sb.auth.signUp({email:em,password:pw,options:{data:{name:$('an').value.trim()}}});
+  b.disabled=false;
+  if(r.error){er(r.error.message);return}
+  if(a==='signup'&&!r.data.session){$('dv').innerHTML='<p class="ok">สมัครสำเร็จ กรุณายืนยันอีเมลแล้วกลับมาเข้าสู่ระบบ</p>';return}
+  await setUser(r.data.user);if(pend&&Object.keys(cart).length){pend=null;V='pay'}else{pend=null;V='cart';document.body.classList.remove('open');return}R()}
+ else if(a==='ok'){
+  const nm=$('fn').value.trim(),ph=$('ph').value.replace(/[-\s]/g,''),ad=$('ad').value.trim();
+  if(!nm||!/^0\d{8,9}$/.test(ph)||ad.length<10){er('กรุณากรอกชื่อ เบอร์โทร (0xxxxxxxxx) และที่อยู่ให้ครบถ้วน');return}
+  b.disabled=true;b.textContent='กำลังสั่งซื้อ…';const py=$('py').value;
+  const {data,error}=await sb.rpc('place_order',{p_name:nm,p_phone:ph,p_address:ad,p_shipping:ship,p_payment:py,p_coupon:coupon,p_items:Object.entries(cart).map(([id,q])=>({id:+id,qty:q}))});
+  if(error){b.disabled=false;b.textContent='ยืนยันคำสั่งซื้อ';er(error.message);await loadP();return}
+  lastO={order_no:data.order_no,total:data.total,payment:py,name:nm,status:0};cart={};coupon='';save('cart',cart);badge();await loadP();V='done';R()}
+ else if(a==='qr'){const o=window._os[i];lastO={order_no:o.order_no,total:o.total,payment:o.payment,name:o.name,status:o.status};V='done';R()}
+ else if(a==='tab'){AT=v;R()}
+ else if(a==='ep'){eid=i;R()}
+ else if(a==='dp'){if(confirm('ลบสินค้านี้?')){const {error}=await sb.from('products').delete().eq('id',i);if(error)alert(error.message);await loadP();R()}}
+ else if(a==='sp'){
+  const n=$('an').value.trim(),c=$('ac').value.trim(),p=+$('ap').value,sp=+$('as').value||null,st=parseInt($('at').value);
+  if(!n||!c||!(p>0)||!(st>=0)||(sp&&sp>=p)){er('กรอกชื่อ หมวด ราคา สต็อกให้ถูกต้อง (ราคาลดต้องต่ำกว่าราคาปกติ)');return}
+  const o={name:n,category:c,price:p,sale_price:sp,stock:st,emoji:$('ae').value||'📦',description:$('ad').value};
+  const {error}=eid?await sb.from('products').update(o).eq('id',eid):await sb.from('products').insert(o);
+  if(error){er(error.message);return}eid=0;await loadP();R()}
+ else if(a==='st'){const {error}=await sb.from('orders').update({status:v}).eq('id',i);if(error)alert(error.message);R()}
+};
+loadP();
+</script>
+</body>
+</html>
