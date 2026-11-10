@@ -3,42 +3,59 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&display=swap">
 <title>ร้านสุขใจ – ร้านค้าออนไลน์</title>
 <style>
-:root{--bg:#faf8f5;--card:#fff;--tx:#2a2420;--mut:#7a6f66;--bd:#e7e0d8;--pri:#c2410c;--pt:#fff;--ok:#15803d;--red:#dc2626}
-@media (prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#181412;--card:#231e1b;--tx:#f1ebe5;--mut:#a89d93;--bd:#383029;--pri:#fb923c;--pt:#2a1405;--ok:#4ade80;--red:#f87171}}
+:root{--bg:#f6f4f0;--card:#fff;--tx:#231f1c;--mut:#7b716a;--bd:#e8e2da;--pri:#d9480f;--pri2:#f08c00;--pt:#fff;--ok:#2b8a3e;--red:#e03131;--sh:0 1px 3px #0001,0 8px 24px -12px #0002}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#14110f;--card:#1e1a17;--tx:#f3ede7;--mut:#a89d93;--bd:#322b26;--pri:#ff8a4c;--pri2:#ffb347;--pt:#2a1405;--ok:#69db7c;--red:#ff8787;--sh:0 1px 3px #0006,0 8px 24px -12px #000a}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 "Noto Sans Thai","Sarabun",system-ui,sans-serif}
-header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px;padding:10px 14px;flex-wrap:wrap}
-header h1{font-size:1.15rem;margin:0;flex:1}
-.w{max-width:1000px;margin:0 auto;padding:14px}
-.hero{border-radius:16px;padding:20px;margin-bottom:14px;color:#fff;background:linear-gradient(120deg,#c2410c,#f59e0b)}
-.hero h2{margin:0}.hero p{margin:0;opacity:.92}
-input,select,textarea{padding:9px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx);font:inherit;width:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 "Noto Sans Thai","Sarabun",system-ui,sans-serif}
+header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px;padding:10px max(14px,calc(50% - 500px));flex-wrap:wrap}
+header h1{font-size:1.25rem;margin:0;flex:1;font-weight:700;letter-spacing:-.01em}
+.w{max-width:1000px;margin:0 auto;padding:18px 14px}
+.hero{position:relative;overflow:hidden;border-radius:22px;padding:34px 28px;margin-bottom:20px;color:#fff;background:linear-gradient(120deg,var(--pri),var(--pri2));box-shadow:var(--sh)}
+.hero:after{content:"🛍️";position:absolute;right:18px;bottom:-14px;font-size:7rem;opacity:.22;transform:rotate(-10deg)}
+.hero h2{margin:0 0 6px;font-size:clamp(1.4rem,4vw,2rem);line-height:1.2}.hero p{margin:0;opacity:.95}
+.hero .tag{display:inline-block;background:#fff3;border-radius:99px;padding:2px 12px;font-size:.8rem;margin-bottom:10px}
+input,select,textarea{padding:10px 12px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--tx);font:inherit;width:100%}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--pri);outline-offset:-1px}
 .bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}.bar select{width:auto}.bar input[type=search]{flex:1;min-width:150px;width:auto}
-.chip{padding:7px 14px;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:99px;font:inherit;cursor:pointer}
-.chip.on{background:var(--pri);color:var(--pt);border-color:var(--pri)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
-.p{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:3px;position:relative}
-.p .e{font-size:3rem;text-align:center;background:var(--bg);border-radius:10px;padding:10px}
-.mut,.p small{color:var(--mut)}.old{text-decoration:line-through;color:var(--mut);font-size:.85rem}.pr{color:var(--pri);font-weight:700}
-.bg{position:absolute;top:8px;left:8px;background:var(--red);color:#fff;border-radius:6px;font-size:.75rem;padding:1px 7px}
-.b{padding:9px 14px;border:0;border-radius:8px;background:var(--pri);color:var(--pt);font:inherit;font-weight:600;cursor:pointer}
-.b:disabled{opacity:.5}
-.s{padding:4px 10px;border:1px solid var(--bd);border-radius:7px;background:none;color:var(--tx);cursor:pointer;font:inherit}
-.cb{position:relative}.cb span{position:absolute;top:-7px;right:-7px;background:var(--ok);color:#fff;border-radius:99px;font-size:.7rem;padding:1px 6px}
-#ov{position:fixed;inset:0;background:#0007;z-index:9;display:none}
-#dr{position:fixed;top:0;right:0;bottom:0;width:min(520px,100%);background:var(--bg);z-index:10;display:none;flex-direction:column;padding:16px;overflow-y:auto}
-.open #ov{display:block}.open #dr{display:flex}
-.li{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)}.li .e{font-size:1.8rem}.li>div{flex:1}
-.t{display:flex;justify-content:space-between;padding:3px 0}.t.big{font-weight:700;font-size:1.1rem}
+#cats{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;scrollbar-width:none}
+.chip{padding:7px 16px;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:99px;font:inherit;cursor:pointer;white-space:nowrap;transition:.15s}
+.chip.on{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+@media (max-width:480px){.grid{grid-template-columns:repeat(2,1fr);gap:10px}}
+.p{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:0 0 12px;display:flex;flex-direction:column;gap:4px;position:relative;overflow:hidden;box-shadow:var(--sh);transition:transform .18s,box-shadow .18s}
+.p:hover{transform:translateY(-3px)}
+.p>*:not(.e):not(.bg){padding:0 12px}
+.p .e{aspect-ratio:1/1;background:linear-gradient(135deg,var(--bg),var(--bd));display:grid;place-items:center;overflow:hidden;margin-bottom:6px}
+.p .e img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}.p:hover .e img{transform:scale(1.05)}
+.em{font-size:4rem}
+.p b{line-height:1.3}
+.mut,.p small{color:var(--mut)}.old{text-decoration:line-through;color:var(--mut);font-size:.85rem}.pr{color:var(--pri);font-weight:700;font-size:1.15rem}
+.bg{position:absolute;top:10px;left:10px;z-index:1;background:var(--red);color:#fff;border-radius:8px;font-size:.75rem;font-weight:700;padding:2px 8px}
+.b{padding:10px 16px;border:0;border-radius:10px;background:linear-gradient(120deg,var(--pri),var(--pri2));color:var(--pt);font:inherit;font-weight:700;cursor:pointer;transition:.15s}
+.b:hover{filter:brightness(1.07)}.b:disabled{opacity:.5}
+.p .b,.p .s{margin:6px 12px 0;padding:9px}
+.s{padding:5px 12px;border:1px solid var(--bd);border-radius:9px;background:var(--card);color:var(--tx);cursor:pointer;font:inherit}
+.s:hover{border-color:var(--pri)}
+.cb{position:relative}.cb span{position:absolute;top:-7px;right:-7px;background:var(--pri);color:var(--pt);border-radius:99px;font-size:.7rem;font-weight:700;padding:1px 6px}
+#ov{position:fixed;inset:0;background:#0008;backdrop-filter:blur(2px);z-index:9;display:none}
+#dr{position:fixed;top:0;right:0;bottom:0;width:min(520px,100%);background:var(--bg);z-index:10;display:none;flex-direction:column;padding:18px;overflow-y:auto;box-shadow:-10px 0 40px #0005}
+.open #ov{display:block}.open #dr{display:flex;animation:in .22s ease-out}
+@keyframes in{from{transform:translateX(40px);opacity:0}}
+.li{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)}.li>div{flex:1}
+.li .e{width:56px;height:56px;border-radius:12px;overflow:hidden;display:grid;place-items:center;background:var(--card);flex:none}.li .e img{width:100%;height:100%;object-fit:cover}.li .em{font-size:1.9rem}
+.t{display:flex;justify-content:space-between;padding:3px 0}.t.big{font-weight:700;font-size:1.15rem}
 label{font-size:.85rem;color:var(--mut);display:block;margin-top:8px}
 .err{color:var(--red);font-size:.9rem;min-height:1.2em}.ok{color:var(--ok)}
 .row{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
-.box{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:10px;margin:8px 0}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px;margin:10px 0}
 .tl{display:flex;justify-content:space-between;margin:10px 0;font-size:.75rem;text-align:center}.tl div{flex:1;opacity:.4}.tl .on{opacity:1;color:var(--ok);font-weight:700}
-#qr{display:flex;justify-content:center;background:#fff;padding:12px;border-radius:10px;margin:8px 0}
-footer{text-align:center;color:var(--mut);font-size:.85rem;padding:24px 14px;border-top:1px solid var(--bd);margin-top:20px}
+#qr{display:flex;justify-content:center;background:#fff;padding:12px;border-radius:12px;margin:8px 0}
+.sv{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-bottom:18px;font-size:.85rem;color:var(--mut)}
+.sv div{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:8px 12px}
+footer{text-align:center;color:var(--mut);font-size:.85rem;padding:28px 14px;border-top:1px solid var(--bd);margin-top:24px}
 </style>
 </head>
 <body>
@@ -48,7 +65,8 @@ footer{text-align:center;color:var(--mut);font-size:.85rem;padding:24px 14px;bor
 <button class="s" data-a="open" data-v="adm" id="ha" hidden>⚙️ จัดการร้าน</button>
 <button class="s cb" data-a="open" data-v="cart">🛒<span id="cn">0</span></button></header>
 <div class="w">
-<div class="hero"><h2>ส่งฟรีเมื่อซื้อครบ 500 บาท</h2><p>ใช้โค้ด WELCOME10 ลด 10% · SAVE50 ลด 50 บาท</p></div>
+<div class="hero"><span class="tag">โปรโมชันพิเศษ</span><h2>ส่งฟรีเมื่อซื้อครบ 500 บาท</h2><p>ใช้โค้ด WELCOME10 ลด 10% · SAVE50 ลด 50 บาท</p></div>
+<div class="sv"><div>🚚 จัดส่งทั่วไทย</div><div>🔒 ชำระเงินปลอดภัย</div><div>🔄 คืนสินค้าได้ใน 7 วัน</div></div>
 <div class="bar"><input type="search" id="q" placeholder="ค้นหาสินค้า…"><select id="so"><option value="">เรียงตามปกติ</option><option value="a">ราคาต่ำ → สูง</option><option value="d">ราคาสูง → ต่ำ</option><option value="b">ขายดี</option></select></div>
 <div class="bar" id="cats"></div>
 <div class="grid" id="gr"><p>กำลังโหลดสินค้า…</p></div>
@@ -63,7 +81,7 @@ footer{text-align:center;color:var(--mut);font-size:.85rem;padding:24px 14px;bor
 /* ===== ตั้งค่า ===== */
 const SUPABASE_URL='https://jcciwgvkredzazhqasey.supabase.co';
 const SUPABASE_KEY='sb_publishable_UKvSYesX09OkfmC5fT8ijA_yvDfB3Uc';
-const PROMPTPAY='0631154851'; // เปลี่ยนเป็นเบอร์พร้อมเพย์ (10 หลัก) หรือเลขบัตรประชาชน 13 หลัก
+const PROMPTPAY='0812345678'; // เปลี่ยนเป็นเบอร์พร้อมเพย์ (10 หลัก) หรือเลขบัตรประชาชน 13 หลัก
 /* ================== */
 const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 const $=id=>document.getElementById(id);
@@ -76,6 +94,7 @@ const STS=['รอชำระเงิน','เตรียมสินค้�
 let P=[],cart=load('cart',{}),coupon='',ship='std',cat='ทั้งหมด',V='cart',user=null,isAdm=false,AT='p',eid=0,AM='in',lastO=null,pend=null;
 const price=p=>+(p.sale_price||p.price);
 const prod=id=>P.find(x=>x.id==id);
+const imgH=p=>p.image_url?`<img src="${esc(p.image_url)}" alt="${esc(p.name)}" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'em',textContent:'${'📦'}'}))">`:`<span class="em">${esc(p.emoji)}</span>`;
 const priceH=p=>p.sale_price?`<span class="pr">฿${f(p.sale_price)}</span> <span class="old">฿${f(p.price)}</span>`:`<span class="pr">฿${f(p.price)}</span>`;
 
 /* PromptPay QR (EMVCo) */
@@ -106,7 +125,7 @@ function grid(){
   const q=$('q').value.trim().toLowerCase(),so=$('so').value;
   let l=P.filter(x=>(cat==='ทั้งหมด'||x.category===cat)&&(x.name+(x.description||'')).toLowerCase().includes(q));
   if(so==='a')l.sort((a,b)=>price(a)-price(b));if(so==='d')l.sort((a,b)=>price(b)-price(a));if(so==='b')l.sort((a,b)=>b.sold-a.sold);
-  $('gr').innerHTML=l.map(x=>`<div class="p">${x.sale_price?`<span class="bg">-${Math.round((1-x.sale_price/x.price)*100)}%</span>`:''}<div class="e">${esc(x.emoji)}</div><b>${esc(x.name)}</b><small>${esc(x.description)}<br>ขายแล้ว ${f(x.sold)} · เหลือ ${x.stock}</small><div>${priceH(x)}</div>${x.stock>0?`<button class="b" data-a="add" data-i="${x.id}">เพิ่มลงตะกร้า</button>`:'<button class="s" disabled>สินค้าหมด</button>'}</div>`).join('')||'<p>ไม่พบสินค้า</p>';
+  $('gr').innerHTML=l.map(x=>`<div class="p">${x.sale_price?`<span class="bg">-${Math.round((1-x.sale_price/x.price)*100)}%</span>`:''}<div class="e">${imgH(x)}</div><b>${esc(x.name)}</b><small>${esc(x.description)}<br>ขายแล้ว ${f(x.sold)} · เหลือ ${x.stock}</small><div>${priceH(x)}</div>${x.stock>0?`<button class="b" data-a="add" data-i="${x.id}">เพิ่มลงตะกร้า</button>`:'<button class="s" disabled>สินค้าหมด</button>'}</div>`).join('')||'<p>ไม่พบสินค้า</p>';
 }
 $('q').oninput=$('so').onchange=grid;
 
@@ -128,7 +147,7 @@ async function R(){
   d.innerHTML=`${pend?'<p class="err">กรุณาเข้าสู่ระบบก่อนชำระเงิน</p>':''}${AM==='up'?'<label>ชื่อ<input id="an"></label>':''}<label>อีเมล<input id="ae" type="email"></label><label>รหัสผ่าน (อย่างน้อย 6 ตัว)<input id="apw" type="password"></label><div class="err" id="er"></div>
   <div class="row"><button class="b" data-a="${AM==='in'?'login':'signup'}">${AM==='in'?'เข้าสู่ระบบ':'สมัครสมาชิก'}</button><button class="s" data-a="am">${AM==='in'?'ยังไม่มีบัญชี? สมัคร':'มีบัญชีแล้ว? เข้าสู่ระบบ'}</button></div>`}
  else if(V==='cart'){T.textContent='ตะกร้าสินค้า';const ids=Object.keys(cart);if(!ids.length){d.innerHTML='<p>ตะกร้าว่างเปล่า</p>';return}
-  d.innerHTML=ids.map(id=>{const p=prod(id);return `<div class="li"><span class="e">${esc(p.emoji)}</span><div><b>${esc(p.name)}</b><br><small>฿${f(price(p))}</small></div><button class="s" data-a="m" data-i="${id}">−</button><b>${cart[id]}</b><button class="s" data-a="pl" data-i="${id}">+</button></div>`}).join('')+
+  d.innerHTML=ids.map(id=>{const p=prod(id);return `<div class="li"><span class="e">${imgH(p)}</span><div><b>${esc(p.name)}</b><br><small>฿${f(price(p))}</small></div><button class="s" data-a="m" data-i="${id}">−</button><b>${cart[id]}</b><button class="s" data-a="pl" data-i="${id}">+</button></div>`}).join('')+
   `<div class="row"><input id="cp" placeholder="โค้ดส่วนลด" value="${esc(coupon)}" style="flex:1;width:auto"><button class="s" data-a="cpn">ใช้โค้ด</button></div><div class="err" id="er"></div>
   <label>วิธีจัดส่ง<select id="sh"><option value="std" ${ship==='std'?'selected':''}>ส่งธรรมดา 2–3 วัน (฿40 / ฟรีเมื่อครบ 500)</option><option value="exp" ${ship==='exp'?'selected':''}>ส่งด่วน 1 วัน (฿80)</option></select></label>
   <div style="margin:10px 0">${sumH(calc())}</div><button class="b" style="width:100%" data-a="go">ไปชำระเงิน</button>`}
@@ -145,8 +164,8 @@ async function R(){
  else if(V==='adm'){T.textContent='จัดการร้าน';
   const tabs=`<div class="row">${[['p','สินค้า'],['o','ออเดอร์'],['s','ยอดขาย']].map(t=>`<button class="chip ${AT===t[0]?'on':''}" data-a="tab" data-v="${t[0]}">${t[1]}</button>`).join('')}</div>`;
   if(AT==='p'){const e=prod(eid)||{name:'',category:'',price:'',sale_price:'',stock:'',emoji:'📦',description:''};
-   d.innerHTML=tabs+`<div class="box"><b>${eid?'แก้ไขสินค้า':'เพิ่มสินค้าใหม่'}</b><label>ชื่อ<input id="an" value="${esc(e.name)}"></label><label>หมวดหมู่<input id="ac" value="${esc(e.category)}"></label><div class="row"><label style="flex:1">ราคา<input id="ap" type="number" value="${e.price}"></label><label style="flex:1">ราคาลด (0=ไม่ลด)<input id="as" type="number" value="${e.sale_price||0}"></label><label style="flex:1">สต็อก<input id="at" type="number" value="${e.stock}"></label></div><label>อีโมจิ<input id="ae" value="${esc(e.emoji)}"></label><label>รายละเอียด<input id="ad" value="${esc(e.description)}"></label><div class="err" id="er"></div><div class="row"><button class="b" data-a="sp">บันทึก</button>${eid?'<button class="s" data-a="ep" data-i="0">ยกเลิก</button>':''}</div></div>`+
-   P.map(p=>`<div class="li"><span class="e">${esc(p.emoji)}</span><div><b>${esc(p.name)}</b><br><small>฿${f(price(p))} · สต็อก ${p.stock}</small></div><button class="s" data-a="ep" data-i="${p.id}">แก้ไข</button><button class="s" data-a="dp" data-i="${p.id}">ลบ</button></div>`).join('')}
+   d.innerHTML=tabs+`<div class="box"><b>${eid?'แก้ไขสินค้า':'เพิ่มสินค้าใหม่'}</b><label>ชื่อ<input id="an" value="${esc(e.name)}"></label><label>หมวดหมู่<input id="ac" value="${esc(e.category)}"></label><div class="row"><label style="flex:1">ราคา<input id="ap" type="number" value="${e.price}"></label><label style="flex:1">ราคาลด (0=ไม่ลด)<input id="as" type="number" value="${e.sale_price||0}"></label><label style="flex:1">สต็อก<input id="at" type="number" value="${e.stock}"></label></div><label>รูปสินค้า (เลือกไฟล์จากเครื่อง ไม่เกิน 3MB)<input id="af" type="file" accept="image/*"></label><label>หรือวางลิงก์รูป<input id="au" value="${esc(e.image_url||'')}"></label><label>อีโมจิสำรอง (ใช้เมื่อไม่มีรูป)<input id="ae" value="${esc(e.emoji)}"></label><label>รายละเอียด<input id="ad" value="${esc(e.description)}"></label><div class="err" id="er"></div><div class="row"><button class="b" data-a="sp">บันทึก</button>${eid?'<button class="s" data-a="ep" data-i="0">ยกเลิก</button>':''}</div></div>`+
+   P.map(p=>`<div class="li"><span class="e">${imgH(p)}</span><div><b>${esc(p.name)}</b><br><small>฿${f(price(p))} · สต็อก ${p.stock}</small></div><button class="s" data-a="ep" data-i="${p.id}">แก้ไข</button><button class="s" data-a="dp" data-i="${p.id}">ลบ</button></div>`).join('')}
   else{d.innerHTML=tabs+'กำลังโหลด…';const {data,error}=await sb.from('orders').select('*,order_items(*)').order('id',{ascending:false});
    if(error){d.innerHTML=tabs+`<p class="err">${esc(error.message)}</p>`;return}
    if(AT==='o')d.innerHTML=tabs+(data.map(o=>`<div class="box"><b>${o.order_no}</b> · ${esc(o.name)} · ${esc(o.phone)}<br>฿${f(o.total)} · ${esc(o.payment)}<br><small class="mut">${esc(o.address)}<br>${o.order_items.map(x=>esc(x.name)+'×'+x.qty).join(', ')}</small><br>สถานะ: <b>${STS[o.status]}</b> ${o.status<3?`<button class="s" data-a="st" data-i="${o.id}" data-v="${o.status+1}">→ ${STS[o.status+1]}</button>`:''}</div>`).join('')||'<p>ยังไม่มีออเดอร์</p>');
@@ -190,7 +209,9 @@ document.onclick=async e=>{
  else if(a==='sp'){
   const n=$('an').value.trim(),c=$('ac').value.trim(),p=+$('ap').value,sp=+$('as').value||null,st=parseInt($('at').value);
   if(!n||!c||!(p>0)||!(st>=0)||(sp&&sp>=p)){er('กรอกชื่อ หมวด ราคา สต็อกให้ถูกต้อง (ราคาลดต้องต่ำกว่าราคาปกติ)');return}
-  const o={name:n,category:c,price:p,sale_price:sp,stock:st,emoji:$('ae').value||'📦',description:$('ad').value};
+  let img=$('au').value.trim()||null;const fl=$('af').files[0];
+  if(fl){if(fl.size>3e6){er('รูปใหญ่เกิน 3MB');return}const ext=(fl.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,'');const path=Date.now()+'-'+Math.random().toString(36).slice(2,7)+'.'+ext;b.disabled=true;b.textContent='กำลังอัปโหลด…';const up=await sb.storage.from('products').upload(path,fl,{contentType:fl.type});b.disabled=false;b.textContent='บันทึก';if(up.error){er('อัปโหลดรูปไม่ได้: '+up.error.message);return}img=sb.storage.from('products').getPublicUrl(path).data.publicUrl}
+  const o={name:n,category:c,price:p,sale_price:sp,stock:st,emoji:$('ae').value||'📦',description:$('ad').value,image_url:img};
   const {error}=eid?await sb.from('products').update(o).eq('id',eid):await sb.from('products').insert(o);
   if(error){er(error.message);return}eid=0;await loadP();R()}
  else if(a==='st'){const {error}=await sb.from('orders').update({status:v}).eq('id',i);if(error)alert(error.message);R()}
