@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://prommin00.github.io/sukjai-shop/sitemap.xml
