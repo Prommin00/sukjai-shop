@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23e8590c'/%3E%3Cpath d='M18 26h28l-2.5 22a4 4 0 0 1-4 3.5H24.5a4 4 0 0 1-4-3.5z' fill='%23fff'/%3E%3Cpath d='M25 26v-3a7 7 0 0 1 14 0v3' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='27.5' cy='35' r='2' fill='%23e8590c'/%3E%3Ccircle cx='36.5' cy='35' r='2' fill='%23e8590c'/%3E%3Cpath d='M26.5 41q5.5 5 11 0' fill='none' stroke='%23e8590c' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
 <title>ร้านสุขใจ – ร้านค้าออนไลน์</title>
 <style>
 :root{--bg:#f6f4f0;--card:#fff;--tx:#231f1c;--mut:#7b716a;--bd:#e8e2da;--pri:#d9480f;--pri2:#f08c00;--pt:#fff;--ok:#2b8a3e;--red:#e03131;--sh:0 1px 3px #0001,0 8px 24px -12px #0002}
@@ -56,10 +57,12 @@ label{font-size:.85rem;color:var(--mut);display:block;margin-top:8px}
 .sv{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-bottom:18px;font-size:.85rem;color:var(--mut)}
 .sv div{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:8px 12px}
 footer{text-align:center;color:var(--mut);font-size:.85rem;padding:28px 14px;border-top:1px solid var(--bd);margin-top:24px}
+.brand{display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none}.brand small{display:block;font-size:.65rem;font-weight:400;color:var(--mut);letter-spacing:.08em;line-height:1;margin-top:2px}.brand span{line-height:1.1}.logo{width:38px;height:38px;flex:none}
 </style>
 </head>
 <body>
-<header><h1>🛍️ ร้านสุขใจ</h1>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="logo" viewBox="0 0 64 64"><defs><linearGradient id="lgg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9480f"/><stop offset="1" stop-color="#f08c00"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#lgg)"/><path d="M18 26h28l-2.5 22a4 4 0 0 1-4 3.5H24.5a4 4 0 0 1-4-3.5z" fill="#fff"/><path d="M25 26v-3a7 7 0 0 1 14 0v3" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/><circle cx="27.5" cy="35" r="2" fill="#d9480f"/><circle cx="36.5" cy="35" r="2" fill="#d9480f"/><path d="M26.5 41q5.5 5 11 0" fill="none" stroke="#d9480f" stroke-width="2.6" stroke-linecap="round"/></symbol></svg>
+<header><h1><a class="brand" href="./"><svg class="logo"><use href="#logo"/></svg><span>ร้านสุขใจ <small>Sukjai Shop</small></span></a></h1>
 <button class="s" data-a="open" data-v="auth" id="hu">เข้าสู่ระบบ</button>
 <button class="s" data-a="open" data-v="orders" id="ho" hidden>📦 ออเดอร์ของฉัน</button>
 <button class="s" data-a="open" data-v="adm" id="ha" hidden>⚙️ จัดการร้าน</button>
@@ -71,7 +74,7 @@ footer{text-align:center;color:var(--mut);font-size:.85rem;padding:28px 14px;bor
 <div class="bar" id="cats"></div>
 <div class="grid" id="gr"><p>กำลังโหลดสินค้า…</p></div>
 </div>
-<footer>© ร้านสุขใจ · ติดต่อ: ตามข้อมูลร้านของคุณ</footer>
+<footer><svg class="logo" style="width:44px;height:44px"><use href="#logo"/></svg><br>© ร้านสุขใจ · ติดต่อ: ตามข้อมูลร้านของคุณ</footer>
 <div id="ov" data-a="close"></div>
 <aside id="dr"><div style="display:flex;justify-content:space-between;align-items:center"><h2 style="margin:0" id="dt"></h2><button class="s" data-a="close">✕</button></div><div id="dv"></div></aside>
 
